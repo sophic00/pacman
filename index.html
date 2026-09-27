@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Pac-Man Arcade</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div class="game-container">
+      <div class="arcade-frame">
+        <canvas id="game-canvas"></canvas>
+        <div id="crt-overlay" class="crt-overlay"></div>
+      </div>
+
+      <div class="controls-bar">
+        <button id="mute-btn" class="arcade-btn">🔊 Mute</button>
+        <button id="pause-btn" class="arcade-btn">⏸ Pause</button>
+        <button id="reset-btn" class="arcade-btn">🔄 Reset</button>
+        <button id="crt-btn" class="arcade-btn">📺 CRT: ON</button>
+      </div>
+
+      <div class="instructions-panel">
+        Controls: <span>Arrows / WASD</span> or <span>Swipe</span> | <span>P</span> Pause | <span>M</span> Mute
+      </div>
+
+      <!-- Mobile Touch Controls -->
+      <div class="touch-dpad">
+        <button class="dpad-btn dpad-up" data-dir="UP">▲</button>
+        <button class="dpad-btn dpad-left" data-dir="LEFT">◀</button>
+        <button class="dpad-btn dpad-right" data-dir="RIGHT">▶</button>
+        <button class="dpad-btn dpad-down" data-dir="DOWN">▼</button>
+      </div>
+    </div>
+
+    <script>
+      // CRT Toggle
+      const crtBtn = document.getElementById('crt-btn');
+      const crtOverlay = document.getElementById('crt-overlay');
+      if (crtBtn && crtOverlay) {
+        let crtOn = true;
+        crtBtn.addEventListener('click', () => {
+          crtOn = !crtOn;
+          crtOverlay.classList.toggle('disabled', !crtOn);
+          crtBtn.textContent = crtOn ? '📺 CRT: ON' : '📺 CRT: OFF';
+        });
+      }
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
